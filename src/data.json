@@ -1,0 +1,22 @@
+{
+    "people": [
+        {
+            "id": 1,
+            "name": "Callum Booth",
+            "cupsdrank": 0,
+            "roundsmade": 0 
+        },
+        {
+            "id": 2,
+            "name": "Kris Bradbury",
+            "cupsdrank": 0,
+            "roundsmade": 0
+        },
+        {
+            "id": 3,
+            "name": "Jamie Biddulph",
+            "cupsdrank": 0,
+            "roundsmade": 0
+        }
+    ] 
+}
