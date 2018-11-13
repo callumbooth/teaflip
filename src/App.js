@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-// @flow
+import WinnerModal from './components/WinnerModal/index';
+import './App.scss';
 
 import data from './data.json';
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             people: data.people,
             round: [],
-            winner: null
+            winner: null,
+            showModal: false
         };
     }
 
@@ -21,7 +21,7 @@ class App extends Component {
             return;
         }
         this.setState(prevState => ({
-            round: [...prevState.round, person]
+            round: [...prevState.round, person.id]
         }));
     }
 
@@ -31,79 +31,97 @@ class App extends Component {
         }
 
         let updatedPeople = this.state.people.slice();
+        let theRound = this.state.round.slice();
 
-        let inRound = this.state.round.slice().sort((a,b) => {
-            return a.roundsmade - b.roundsmade;
-        });
-
-        let winner;
-        let lowest = inRound.find(o => o.cupsmade === inRound[0].cupsmade);
-        if (inRound[0].id !== lowest.id) {
-            winner = inRound[this.getRandomInt(inRound.length)];
-        } else {
-            winner = inRound[0];
-        }
-        
         updatedPeople.map(person => {
-            if (inRound.find(p => p.id === person.id)) {
-                person.cupsdrank++;
-                if (person.id === winner.id) {
-                    person.roundsmade++;
-                    this.setState({
-                        winner: person.name
-                    });
+            if (theRound.indexOf(person.id) === -1) {
+                return person;
+            }
+
+            let weight = person.cupsdrank - person.roundsmade;
+            
+            if (weight > 1) {
+                for(let i = 0; i < weight; i++) {
+                    theRound.push(person.id);
                 }
             }
+        });
+        const winner = theRound[this.getRandomInt(theRound.length)];
+
+        updatedPeople.map(person => {
+            if (theRound.indexOf(person.id) === -1) {
+                return person;
+            }
+            person.cupsdrank++;
+            if (person.id === winner) {
+                person.roundsmade++;
+                this.setState({
+                    winner: person
+                });
+            }
+
             return person;
         });
 
         this.setState({
-            people: updatedPeople
-        });
+            people: updatedPeople,
+            round: [],
+            showModal: true
+        }, () => {
+            if (typeof(this.props.onChosen) === "function") {
+                this.props.onChosen(this.state.people);
+            }
+        });   
     }
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     }
 
+    closeModal = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            showModal: false
+        });
+    }
+
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                </header>
-                <div className="people">
-                    {
-                        this.state.winner ? <h2>And the winner is: {this.state.winner}</h2> : null
-                    }
+            <div className="tf-app">
+                <div className="tf-header">
                     <h3>
-                        People in round: 
-                        {this.state.round.map((person, i) => {
-                            return (
-                                person.name + ', '
-                            );
+                        Who's In the round: 
+                        {this.state.people.map((person, i) => {
+                            if (this.state.round.indexOf(person.id) !== -1) {
+                                return (
+                                    person.name + ', '
+                                );
+                            } else {
+                                return '';
+                            }
                         })}
                     </h3>
+                    <button className="tf-btn" onClick={this.chooseTeaMaker}>
+                        Find the winner
+                    </button>
+                </div>
+                
+                <div className="people">
                     {this.state.people.map((person, i) => {
                         return (
-                            <div key={i}>
+                            <div className="person" key={i}>
                                 Name: {person.name} <br />
                                 Cups drank: {person.cupsdrank} <br />
                                 Rounds Made: {person.roundsmade} <br />
-                                <button onClick={(e) => this.addPersonToRound(e, person)}>
+                                <button className="tf-btn" onClick={(e) => this.addPersonToRound(e, person)}>
                                     Add to round
                                 </button>
                             </div>
                         );
                     })}
-
-                    <button onClick={this.chooseTeaMaker}>
-                        Who's making the tea
-                    </button>
                 </div>
+                <WinnerModal closeModal={this.closeModal} open={this.state.showModal}>{this.state.winner ? this.state.winner.name : null}</WinnerModal>
             </div>
         );
     }

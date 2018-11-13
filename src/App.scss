@@ -1,0 +1,30 @@
+.tf-app {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: left;
+    width: 100%;
+
+    .people {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        
+        .person {
+            flex: 1 1 100%;
+            max-width: 33%;
+        }
+    }
+}
+
+.tf-header {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.tf-btn {
+    background-color: #eee;
+    border: none;
+    color: #333;
+    padding: 5px 15px;
+}
+
+@import './components/WinnerModal/styles';
