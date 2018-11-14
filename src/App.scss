@@ -16,7 +16,8 @@
         }
         .person {
             flex: 1 1 100%;
-            max-width: 33%;
+            max-width: calc(33% - 30px);
+            padding: 15px;
             .profile-image {
                 width: 32px;
                 height: 32px;
