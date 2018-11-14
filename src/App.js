@@ -177,7 +177,7 @@ class App extends Component {
                         return (
                             <div className="person" key={i}>
                                 <div className="person-wrapper">
-                                    <div className="profile-image" style={{"backgroundColor": this.getRandomColor()}}>
+                                    <div className="profile-image" style={{"backgroundColor": person.colour}}>
                                         {image}
                                     </div>
                                     <div className="profile-info">
@@ -190,11 +190,6 @@ class App extends Component {
                                                 <TeaPot style={{"width": "12px"}}/> {person.roundsmade} <br />
                                             </div>
                                         </div>
-                                        <div style={{"flex": "0 0 100%"}}>
-                                            <button className="tf-btn" onClick={(e) => this.addPersonToRound(e, person)}>
-                                                Add to round
-                                            </button>
-                                        </div>
                                         {this.state.round.indexOf(person.id) !== -1 ? 
                                             (
                                                 <div style={{"display": "block"}}>
@@ -206,7 +201,9 @@ class App extends Component {
                                                     </button>
                                                 </div>
                                             )
-                                        : null}
+                                        : <button className="tf-btn" onClick={(e) => this.addPersonToRound(e, person)}>
+                                            Add to round
+                                        </button>}
                                     </div>
                                 </div>
                             </div>
@@ -216,6 +213,17 @@ class App extends Component {
                 <WinnerModal closeModal={this.closeModal} open={this.state.showModal}>{this.state.winner ? this.state.winner.name : null}</WinnerModal>
             </div>
         );
+    }
+
+    componentDidMount() {
+        let people = this.state.people.slice();
+        people.map((person, i) => {
+            person.colour = this.getRandomColor();
+            return person;
+        });
+        this.setState({
+            people
+        });
     }
 }
 
