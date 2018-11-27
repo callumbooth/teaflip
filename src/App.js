@@ -19,7 +19,7 @@ class App extends Component {
         };
     }
 
-    addPersonToRound(e, person) {
+    addPersonToRound(person) {
         if (this.state.round.indexOf(person.id) !== -1) {
             return;
         }
@@ -28,7 +28,7 @@ class App extends Component {
         }));
     }
 
-    removePersonFromRound(e, person) {
+    removePersonFromRound(person) {
         if (this.state.round.indexOf(person.id) === -1) {
             return;
         }
@@ -39,7 +39,7 @@ class App extends Component {
         }));
     }
 
-    makeARound(e, maker) {
+    makeARound(maker) {
         let updatedPeople = this.state.people.slice();
         let theRound = this.state.round.slice();
 
@@ -193,7 +193,7 @@ class App extends Component {
                                         {this.state.round.indexOf(person.id) !== -1 ? 
                                             (
                                                 <div style={{"display": "block"}}>
-                                                    <button className="tf-btn" onClick={(e) => this.makeARound(e, person)}>
+                                                    <button className="tf-btn" onClick={(e) => this.makeARound(person)}>
                                                         Make the round
                                                     </button>
                                                     <button className="tf-btn" onClick={(e) => this.removePersonFromRound(e, person)}>
