@@ -6,7 +6,7 @@ import './App.scss';
 import { ReactComponent as CoffeeIcon } from './icons/coffee-solid.svg';
 import { ReactComponent as TeaPot } from './icons/teapot.svg';
 
-class TeaFlip extends Component {
+class Teaflip extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -225,4 +225,4 @@ class TeaFlip extends Component {
     }
 }
 
-export default TeaFlip;
+export default Teaflip;
