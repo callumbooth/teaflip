@@ -1,11 +1,12 @@
 {
     "name": "teaflip",
     "description": "A simple way to decide who makes the next round of drinks",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "files": [
         "src",
         "lib"
     ],
+    "main": "lib/index.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/callumbooth/teaflip"
