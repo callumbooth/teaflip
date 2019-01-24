@@ -3,12 +3,10 @@ import React, { Component } from 'react';
 import WinnerModal from './components/WinnerModal/index';
 import './App.scss';
 
-import data from './data.json';
-
 import { ReactComponent as CoffeeIcon } from './icons/coffee-solid.svg';
 import { ReactComponent as TeaPot } from './icons/teapot.svg';
 
-class App extends Component {
+class TeaFlip extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -227,4 +225,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default TeaFlip;
