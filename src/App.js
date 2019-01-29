@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import WinnerModal from './components/WinnerModal/index';
 import './App.scss';
 
 import data from './data.json';
@@ -14,12 +13,18 @@ class App extends Component {
         this.state = {
             people: data.people,
             round: [],
-            winner: null,
-            showModal: false
+            winner: null
         };
     }
 
+    resetRound() {
+        this.setState({
+            winner: null
+        })
+    }
+
     addPersonToRound(person) {
+        this.resetRound();
         if (this.state.round.indexOf(person.id) !== -1) {
             return;
         }
@@ -106,8 +111,7 @@ class App extends Component {
 
         this.setState({
             people: updatedPeople,
-            round: [],
-            showModal: true
+            round: []
         }, () => {
             if (typeof(this.props.onChosen) === "function") {
                 this.props.onChosen(this.state.people);
@@ -117,14 +121,6 @@ class App extends Component {
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
-    }
-
-    closeModal = (e) => {
-        e.preventDefault();
-
-        this.setState({
-            showModal: false
-        });
     }
 
     getRandomColor() {
@@ -141,6 +137,7 @@ class App extends Component {
         return (
             <div className="tf-app">
                 <div className="tf-header">
+                    <h1>Winner: {this.state.winner !== null ? this.state.winner.name : null}</h1>
                     <h3>
                         Who's In the round: 
                         {this.state.people.map((person, i) => {
@@ -201,7 +198,7 @@ class App extends Component {
                                                     </button>
                                                 </div>
                                             )
-                                        : <button className="tf-btn" onClick={(e) => this.addPersonToRound(e, person)}>
+                                        : <button className="tf-btn" onClick={(e) => this.addPersonToRound(person)}>
                                             Add to round
                                         </button>}
                                     </div>
@@ -210,7 +207,6 @@ class App extends Component {
                         );
                     })}
                 </div>
-                <WinnerModal closeModal={this.closeModal} open={this.state.showModal}>{this.state.winner ? this.state.winner.name : null}</WinnerModal>
             </div>
         );
     }
