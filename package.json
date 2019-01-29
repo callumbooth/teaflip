@@ -17,9 +17,8 @@
     "bugs": {
         "url": "https://github.com/callumbooth/teaflip/issues"
     },
-    "dependencies": {},
     "scripts": {
-        "start": "webpack --watch",
+        "watch": "webpack --watch",
         "build": "webpack"
     },
     "eslintConfig": {
@@ -31,18 +30,23 @@
         "not ie <= 11",
         "not op_mini all"
     ],
+    "dependencies": {
+        "react": "^16.4.0",
+        "webpack": "^4.12.0"
+    },
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
-        "babel-loader": "^8.0.5",
+        "babel-loader": "^7.1.4",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-plugin-transform-react-jsx": "^6.24.1",
         "babel-preset-env": "^1.7.0",
-        "babel-preset-react": "^6.24.1",
-        "enzyme": "^3.8.0",
-        "enzyme-adapter-react-16": "^1.7.0",
-        "react-dom": "^16.7.0",
-        "react-test-renderer": "^16.6.3",
-        "webpack-cli": "^3.2.1"
+        "css-loader": "^2.1.0",
+        "node-sass": "^4.11.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "svg-inline-loader": "^0.8.0",
+        "webpack-cli": "^3.0.4"
     },
     "peerDependencies": {
         "react": "^16.7.0"

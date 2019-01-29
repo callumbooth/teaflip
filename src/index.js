@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
 
-import WinnerModal from './components/WinnerModal/index';
 import './App.scss';
 
 import { ReactComponent as CoffeeIcon } from './icons/coffee-solid.svg';
 import { ReactComponent as TeaPot } from './icons/teapot.svg';
 
 class Teaflip extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
-            people: data.people,
+            people: [
+                {
+                    id: 1,
+                    name: "callum booth",
+                    cupsdrank: 0,
+                    roundsmade: 0
+                }
+            ],
             round: [],
-            winner: null,
-            showModal: false
+            winner: null
         };
     }
 
+    resetRound() {
+        this.setState({
+            winner: null
+        })
+    }
+
     addPersonToRound(person) {
+        this.resetRound();
         if (this.state.round.indexOf(person.id) !== -1) {
             return;
         }
@@ -63,7 +76,7 @@ class Teaflip extends Component {
         });
     }
 
-    chooseTeaMaker = (e) => {
+    chooseTeaMaker(e) {
         if (this.state.round.length === 0) {
             return;
         }
@@ -104,8 +117,7 @@ class Teaflip extends Component {
 
         this.setState({
             people: updatedPeople,
-            round: [],
-            showModal: true
+            round: []
         }, () => {
             if (typeof(this.props.onChosen) === "function") {
                 this.props.onChosen(this.state.people);
@@ -115,14 +127,6 @@ class Teaflip extends Component {
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
-    }
-
-    closeModal = (e) => {
-        e.preventDefault();
-
-        this.setState({
-            showModal: false
-        });
     }
 
     getRandomColor() {
@@ -139,6 +143,7 @@ class Teaflip extends Component {
         return (
             <div className="tf-app">
                 <div className="tf-header">
+                    <h1>Winner: {this.state.winner !== null ? this.state.winner.name : null}</h1>
                     <h3>
                         Who's In the round: 
                         {this.state.people.map((person, i) => {
@@ -151,7 +156,7 @@ class Teaflip extends Component {
                             }
                         })}
                     </h3>
-                    <button className="tf-btn" onClick={this.chooseTeaMaker}>
+                    <button className="tf-btn" onClick={(e) => this.chooseTeaMaker(e)}>
                         Find the winner
                     </button>
                 </div>
@@ -199,7 +204,7 @@ class Teaflip extends Component {
                                                     </button>
                                                 </div>
                                             )
-                                        : <button className="tf-btn" onClick={(e) => this.addPersonToRound(e, person)}>
+                                        : <button className="tf-btn" onClick={(e) => this.addPersonToRound(person)}>
                                             Add to round
                                         </button>}
                                     </div>
@@ -208,7 +213,6 @@ class Teaflip extends Component {
                         );
                     })}
                 </div>
-                <WinnerModal closeModal={this.closeModal} open={this.state.showModal}>{this.state.winner ? this.state.winner.name : null}</WinnerModal>
             </div>
         );
     }

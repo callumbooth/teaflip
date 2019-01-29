@@ -1,6 +1,8 @@
+
 {
-    "presets": ["env"],
-    "plugins": [
-      "babel-preset-react"
-    ]
-  }
+  "presets": ["env"],
+  "plugins": [
+      "transform-object-rest-spread",
+      "transform-react-jsx"
+  ]
+}
