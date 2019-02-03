@@ -1,25 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import Teaflip from "./index";
 
 import { shallow } from "enzyme";
 
-xit("renders without crashing", () => {
+it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<App />, div);
+    ReactDOM.render(<Teaflip />, div);
     ReactDOM.unmountComponentAtNode(div);
 });
 
 describe("adding users to the round", () => {
     it("adds one user to the round", () => {
-        const component = shallow(<App />);
+        const component = shallow(<Teaflip />);
         const instance = component.instance();
         expect(component.state("round")).toEqual([]);
         instance.addPersonToRound({ id: 1 });
         expect(component.state("round")).toEqual([1]);
     });
     it("adds two users to the round", () => {
-        const component = shallow(<App />);
+        const component = shallow(<Teaflip />);
         const instance = component.instance();
         expect(component.state("round")).toEqual([]);
         instance.addPersonToRound({ id: 1 });
@@ -30,7 +30,7 @@ describe("adding users to the round", () => {
 });
 
 it("removes a user from the round", () => {
-    const component = shallow(<App />);
+    const component = shallow(<Teaflip />);
     const instance = component.instance();
     component.setState({ round: [1, 2] });
     instance.removePersonFromRound({ id: 1 });
@@ -38,7 +38,7 @@ it("removes a user from the round", () => {
 });
 
 it("assigns correct value when round is offered", () => {
-    const component = shallow(<App />);
+    const component = shallow(<Teaflip />);
     const instance = component.instance();
 
     const maker = {
@@ -69,7 +69,7 @@ it("assigns correct value when round is offered", () => {
 
 it("Everyone in round has cupsdrank increase by 1", () => {
     //We cant test for the winner because its random.
-    const component = shallow(<App />);
+    const component = shallow(<Teaflip />);
     const instance = component.instance();
 
     const People = [
@@ -95,20 +95,4 @@ it("Everyone in round has cupsdrank increase by 1", () => {
     
     expect(component.state().people[0].cupsdrank).toEqual(4);
     expect(component.state().people[1].cupsdrank).toEqual(5);
-});
-
-
-it('changes the showModal state to false', () => {
-    const component = shallow(<App />);
-    const instance = component.instance();
-    
-    const initialState = {
-        showModal: true
-    };
-    component.setState(initialState);
-    instance.closeModal({
-        preventDefault: () => {}
-    });
-    
-    expect(component.state().showModal).toEqual(false);
 });

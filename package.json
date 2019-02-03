@@ -1,32 +1,67 @@
 {
-  "name": "teaflip",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "enzyme": "^3.7.0",
-    "node-sass": "^4.10.0",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "flow": "flow"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "enzyme-adapter-react-16": "^1.7.0",
-    "react-test-renderer": "^16.6.3"
-  }
+    "name": "teaflip",
+    "description": "A simple way to decide who makes the next round of drinks",
+    "version": "0.9.0",
+    "main": "lib/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/callumbooth/teaflip"
+    },
+    "keywords": [
+        "react",
+        "tea",
+        "drink"
+    ],
+    "author": "Callum Booth <callum-booth@live.co.uk>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/callumbooth/teaflip/issues"
+    },
+    "scripts": {
+        "watch": "webpack --watch",
+        "build": "webpack",
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
+    "dependencies": {
+        "react": "^16.4.0",
+        "webpack": "^4.12.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.4",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "css-loader": "^2.1.0",
+        "enzyme": "^3.8.0",
+        "enzyme-adapter-react-16": "^1.8.0",
+        "jest": "^23.0.0",
+        "node-sass": "^4.11.0",
+        "react-dom": "^16.7.0",
+        "react-test-renderer": "^16.7.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "webpack-cli": "^3.0.4"
+    },
+    "peerDependencies": {
+        "react": "^16.7.0"
+    },
+    "jest": {
+        "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+        "moduleNameMapper": {
+            "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js"
+        }
+    }
+
 }
