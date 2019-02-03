@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import './App.scss';
 
-import { ReactComponent as CoffeeIcon } from './icons/coffee-solid.svg';
-import { ReactComponent as TeaPot } from './icons/teapot.svg';
+import CoffeeIcon from './icons/coffee-solid';
+import TeaPot from './icons/teapot';
 
 class Teaflip extends Component {
     
