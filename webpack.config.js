@@ -20,10 +20,6 @@ module.exports = {
                 }
             },
             {
-                test: /\.svg$/,
-                loader: "svg-inline-loader"
-            },
-            {
                 test: /\.scss$/,
                 use: [
                     "style-loader", // creates style nodes from JS strings
