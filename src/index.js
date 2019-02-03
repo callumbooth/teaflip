@@ -192,7 +192,7 @@ class Teaflip extends Component {
                                                     <button className="tf-btn" onClick={(e) => this.makeARound(person)}>
                                                         Make the round
                                                     </button>
-                                                    <button className="tf-btn" onClick={(e) => this.removePersonFromRound(e, person)}>
+                                                    <button className="tf-btn" onClick={(e) => this.removePersonFromRound(person)}>
                                                         delete from round
                                                     </button>
                                                 </div>
