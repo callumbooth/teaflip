@@ -1,7 +1,7 @@
 {
     "name": "teaflip",
     "description": "A simple way to decide who makes the next round of drinks",
-    "version": "0.1.2",
+    "version": "0.9.0",
     "main": "lib/index.js",
     "repository": {
         "type": "git",
