@@ -139,7 +139,7 @@ class Teaflip extends Component {
                     <h1>Winner: {this.state.winner !== null ? this.state.winner.name : null}</h1>
                     <h3>
                         Who's In the round: 
-                        {this.state.people.map((person, i) => {
+                        {this.state.people !== undefined && this.state.people.map((person, i) => {
                             if (this.state.round.indexOf(person.id) !== -1) {
                                 return (
                                     person.name + ', '
@@ -155,7 +155,7 @@ class Teaflip extends Component {
                 </div>
                 
                 <div className="people">
-                    {this.state.people.map((person, i) => {
+                    {this.state.people !== undefined && this.state.people.map((person, i) => {
                         let name = person.name.split(" ");
                         let image
                         if (person.image) {
@@ -211,14 +211,16 @@ class Teaflip extends Component {
     }
 
     componentDidMount() {
-        let people = this.state.people.slice();
-        people.map((person, i) => {
-            person.colour = this.getRandomColor();
-            return person;
-        });
-        this.setState({
-            people
-        });
+        if (this.state.people !== undefined) {
+            let people = this.state.people.slice();
+            people.map((person, i) => {
+                person.colour = this.getRandomColor();
+                return person;
+            });
+            this.setState({
+                people
+            });
+        }
     }
 }
 
