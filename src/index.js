@@ -10,14 +10,7 @@ class Teaflip extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            people: [
-                {
-                    id: 1,
-                    name: "callum booth",
-                    cupsdrank: 0,
-                    roundsmade: 0
-                }
-            ],
+            people: props.people,
             round: [],
             winner: null
         };
