@@ -24,12 +24,13 @@ import Teaflip from 'teaflip';
 The component expects a single prop, "people".
 
 It expects the value to an array of objects with the 4 following properties.
-| Property | Type | Notes
----| --- | ---
-| id | Int | Must be unique
-|name | String
-|cupsdrank | Int
-|roundsmade | Int
+
+| Property | Type | Notes |
+---| --- | --- |
+| id | Int | Must be unique |
+|name | String |
+|cupsdrank | Int |
+|roundsmade | Int |
 
 ```javascript
 const data = [
@@ -58,5 +59,5 @@ const Component = () => {
 
 ## Todo
 
-[x] Add readme
-[ ] Expose the results of each round
+- [x] Add readme
+- [ ] Expose the results of each round
