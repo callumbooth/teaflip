@@ -1,3 +1,12 @@
+# Teaflip
+
+A react component which tracks each member of yours teams drink consumption, allowing you to select 
+who is in the next round, and it will randomly select a person to make it.
+
+The component tracks the data locally and provides optimistic UI, it does not however implement
+any way to persist the data. It does however return the winner and the people in each round when
+a winner is chose to allow you to implement data persistence.
+
 # How to use
 
 
@@ -21,9 +30,11 @@ import Teaflip from 'teaflip';
 
 ## Required props
 
-The component expects a single prop, "people".
+The component expects a two props, "people" and "onWinner".
 
-It expects the value to an array of objects with the 4 following properties.
+
+### People
+An array of objects with the 4 following properties.
 
 | Property | Type | Notes |
 ---| --- | --- |
@@ -44,14 +55,30 @@ const data = [
 ]
 ```
 
+### onWinner
+A function that returns the winner and the people in the round.
+
+```javascript
+handleWinner = (winner, round) {
+
+}
+```
+
+
 ## Example
 
 ```javascript
+
+const handleWinner = (winner, round) {
+    //winner is an object of the winner
+    //round is an array of object for each person in the round with their updated values
+}
+
 const Component = () => {
     return (
         <>
             <h1>Teaflip</h1>
-            <Teaflip people={data} />
+            <Teaflip people={data} onWinner={handleWinner} />
         </>
     )
 }
