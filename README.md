@@ -87,4 +87,5 @@ const Component = () => {
 ## Todo
 
 - [x] Add readme
-- [ ] Expose the results of each round
+- [x] Expose the results of each round
+- [] Refactor with hooks
