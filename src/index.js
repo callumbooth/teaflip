@@ -91,22 +91,29 @@ class Teaflip extends Component {
             }
             return updatedPeople;
         });
-        const winner = theRound[this.getRandomInt(theRound.length)];
+
+        const winnerId = theRound[this.getRandomInt(theRound.length)];
+        let winner = null;
+        const returnRound = [];
 
         updatedPeople.map(person => {
             if (theRound.indexOf(person.id) === -1) {
                 return person;
             }
             person.cupsdrank++;
-            if (person.id === winner) {
+            if (person.id === winnerId) {
                 person.roundsmade++;
-                this.setState({
-                    winner: person
-                });
+                winner = person;
             }
+            returnRound.push(person);
 
             return person;
         });
+        this.setState({
+            winner: winner
+        });
+        
+        this.props.onResults(winner, returnRound);
 
         this.setState({
             people: updatedPeople,
@@ -129,8 +136,7 @@ class Teaflip extends Component {
           color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
-    }
-      
+    } 
 
     render() {
         return (
