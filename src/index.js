@@ -113,7 +113,9 @@ class Teaflip extends Component {
             winner: winner
         });
         
-        this.props.onWinner(winner, returnRound);
+        if (this.props.onWinner !== undefined) {
+            this.props.onWinner(winner, returnRound);
+        }
 
         this.setState({
             people: updatedPeople,
